@@ -24,7 +24,6 @@ class UserData : public QDialog
 public:
     explicit UserData(QWidget *parent = 0, QString usrname = "none");
     ~UserData();
-
 private:
     Ui::UserData *ui;
     QString username, password, name, address, zip, state, city, telephone, birthdate, email;

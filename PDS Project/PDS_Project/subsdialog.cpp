@@ -10,6 +10,11 @@
 #include <QTextStream>
 #include <QIODevice>
 #include <QtWidgets>
+#include <iostream>
+#include <stdlib.h>
+#include <opencv2/opencv.hpp>
+#include <opencv/cv.h>
+#include <highgui.h>
 
 
 
@@ -54,7 +59,7 @@ bool SubsDialog::AlreadyInserted(QString Filename, QString username){
 
 void SubsDialog::on_pushButton_Signup_clicked()
 {
-    QString username, password, name, address, zip, state, city, telephone, birthdate, email;
+    QString username, password, name, address, zip, state, city, telephone, birthdate, email, photo;
 
     /*Assigning current entitites*/
     username = ui->lineEdit_username->text();
@@ -67,10 +72,11 @@ void SubsDialog::on_pushButton_Signup_clicked()
     telephone  = ui->lineEdit_telephone->text();
     birthdate  = ui->lineEdit_birthdate->text();
     email  = ui->lineEdit_email->text();
+    photo = ui->lineEdit_photo->text();
 
     if(!AlreadyInserted(mFilename, username))
     {
-        SubsDialog::Write(mFilename,username, password, name, address, zip, state, city, telephone, birthdate, email);
+        SubsDialog::Write(mFilename,username, password, name, address, zip, state, city, telephone, birthdate, email, photo);
     }
     else{
         QMessageBox::warning(this, "Woops!","Username already exists! Try another one." );
@@ -78,13 +84,13 @@ void SubsDialog::on_pushButton_Signup_clicked()
     SubsDialog::Read(mFilename);
 }
 
-void SubsDialog::Write(QString Filename,QString username,QString password,QString name,QString address,QString zip,QString state,QString city,QString telephone,QString birthdate,QString email)
+void SubsDialog::Write(QString Filename,QString username,QString password,QString name,QString address,QString zip,QString state,QString city,QString telephone,QString birthdate,QString email, QString photo)
 {
     QFile mFile(Filename);
     QString myData;
 
     myData = username + "*" + password + "*" + name + "*" + address + "*" + zip + "*" + state
-            + "*" + city + "*" + telephone + "*" + birthdate + "*" + email + " \n";
+            + "*" + city + "*" + telephone + "*" + birthdate + "*" + email + "*" + photo +"*\n";
 
     mFile.open(QIODevice::Append); //inserts at the last line
 

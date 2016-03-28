@@ -45,6 +45,7 @@ public:
     QLabel *label;
     QLabel *label_2;
     QPushButton *pushButton;
+    QLabel *label_picture;
 
     void setupUi(QDialog *UserData)
     {
@@ -117,6 +118,9 @@ public:
         pushButton = new QPushButton(UserData);
         pushButton->setObjectName(QStringLiteral("pushButton"));
         pushButton->setGeometry(QRect(240, 600, 99, 27));
+        label_picture = new QLabel(UserData);
+        label_picture->setObjectName(QStringLiteral("label_picture"));
+        label_picture->setGeometry(QRect(390, 140, 120, 120));
 
         retranslateUi(UserData);
         QObject::connect(pushButton, SIGNAL(clicked()), UserData, SLOT(close()));
@@ -148,6 +152,7 @@ public:
         label->setText(QApplication::translate("UserData", "Hey, dude!", 0));
         label_2->setText(QApplication::translate("UserData", "Be careful! This is sensitive data", 0));
         pushButton->setText(QApplication::translate("UserData", "Close", 0));
+        label_picture->setText(QString());
     } // retranslateUi
 
 };
