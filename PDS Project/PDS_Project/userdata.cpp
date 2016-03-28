@@ -30,6 +30,11 @@ UserData::UserData(QWidget *parent, QString usrname) :
     mFile.flush();
     mFile.close();
 
+    qDebug() << parts[10];
+
+    QPixmap pix(parts[10]);
+    pix = pix.scaled(QSize(120,120), Qt::KeepAspectRatio);
+
     ui->lineEdit_username->setText(parts[0]);
     ui->lineEdit_name->setText(parts[2]);
     ui->lineEdit_address->setText(parts[3]);
@@ -39,6 +44,7 @@ UserData::UserData(QWidget *parent, QString usrname) :
     ui->lineEdit_telephone->setText(parts[7]);
     ui->lineEdit_birthdate->setText(parts[8]);
     ui->lineEdit_email->setText(parts[9]);
+    ui->label_picture->setPixmap(pix);
 }
 
 UserData::~UserData()

@@ -21,7 +21,7 @@ class SubsDialog : public QDialog
 public:
     explicit SubsDialog(QWidget *parent = 0);
     ~SubsDialog();
-    void Write(QString Filename,QString username,QString password,QString name,QString address,QString zip,QString state,QString city,QString telephone,QString birthdate,QString email);
+    void Write(QString Filename,QString username,QString password,QString name,QString address,QString zip,QString state,QString city,QString telephone,QString birthdate,QString email, QString photo);
     void Read(QString Filename);
     bool AlreadyInserted(QString Filename, QString name);
 
