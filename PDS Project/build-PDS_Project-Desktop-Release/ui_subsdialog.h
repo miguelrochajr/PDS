@@ -54,12 +54,13 @@ public:
     QLabel *label_3;
     QLineEdit *lineEdit_photo;
     QLabel *label_10;
+    QLabel *label_db_status;
 
     void setupUi(QDialog *SubsDialog)
     {
         if (SubsDialog->objectName().isEmpty())
             SubsDialog->setObjectName(QStringLiteral("SubsDialog"));
-        SubsDialog->resize(620, 650);
+        SubsDialog->resize(620, 671);
         label_header = new QLabel(SubsDialog);
         label_header->setObjectName(QStringLiteral("label_header"));
         label_header->setGeometry(QRect(260, 20, 101, 51));
@@ -137,7 +138,8 @@ public:
         font1.setStrikeOut(false);
         font1.setKerning(true);
         pushButton_Signup->setFont(font1);
-        pushButton_Signup->setFlat(false);
+        pushButton_Signup->setDefault(true);
+        pushButton_Signup->setFlat(true);
         layoutWidget = new QWidget(SubsDialog);
         layoutWidget->setObjectName(QStringLiteral("layoutWidget"));
         layoutWidget->setGeometry(QRect(170, 70, 289, 42));
@@ -161,8 +163,12 @@ public:
         label_10 = new QLabel(SubsDialog);
         label_10->setObjectName(QStringLiteral("label_10"));
         label_10->setGeometry(QRect(100, 210, 161, 17));
+        label_db_status = new QLabel(SubsDialog);
+        label_db_status->setObjectName(QStringLiteral("label_db_status"));
+        label_db_status->setGeometry(QRect(10, 650, 241, 17));
         QWidget::setTabOrder(lineEdit_username, lineEdit_password);
-        QWidget::setTabOrder(lineEdit_password, lineEdit_name);
+        QWidget::setTabOrder(lineEdit_password, lineEdit_photo);
+        QWidget::setTabOrder(lineEdit_photo, lineEdit_name);
         QWidget::setTabOrder(lineEdit_name, lineEdit_address);
         QWidget::setTabOrder(lineEdit_address, lineEdit_zip);
         QWidget::setTabOrder(lineEdit_zip, lineEdit_state);
@@ -208,6 +214,7 @@ public:
         label_3->setText(QApplication::translate("SubsDialog", "               from wherever you are!", 0));
         lineEdit_photo->setText(QString());
         label_10->setText(QApplication::translate("SubsDialog", "Photo(Path to the file):", 0));
+        label_db_status->setText(QApplication::translate("SubsDialog", "[+]DB Status", 0));
     } // retranslateUi
 
 };

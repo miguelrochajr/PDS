@@ -83,6 +83,10 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+    if(connOpen())
+        ui->label_dbstatus->setText("Database is connected!");
+    else
+        ui->label_dbstatus->setText("Fail to open database!");
 }
 
 MainWindow::~MainWindow()
@@ -94,8 +98,10 @@ MainWindow::~MainWindow()
 void MainWindow::on_pushButton_signup_clicked()
 {
     SubsDialog mDialog;
+    this->hide();
     mDialog.setModal(true);
     mDialog.exec();
+    this->show();
 }
 
 void MainWindow::on_pushButton_signin_clicked()
@@ -103,19 +109,34 @@ void MainWindow::on_pushButton_signin_clicked()
     QString username, password;
     username = ui->lineEdit_username->text();
     password = ui->lineEdit_password->text();
-    bool flag = 0;
 
-    if(!AlreadyInserted(mFilename, username))
-    {
-        QMessageBox::warning(this, "Woops!","Username does not exists!" );
+    if(!connOpen()){
+        qDebug() << "Failed to open database" << endl;
+        return;
     }
-    else if(Check_Password(mFilename, username, password))
+
+    connOpen(); //Opens the object
+    QSqlQuery qry;
+    qry.prepare("select * from Login where username='" + username +"' and password='"+password+"'");
+
+    if(qry.exec())
     {
-        UserData mDialog(0,username);
-        mDialog.setModal(true);
-        mDialog.exec();
-    }
-    else{
-        QMessageBox::warning(this, "Woops!","The password or the username does not match!" );
+        int count=0;
+        while(qry.next())
+        {
+            count++;
+        }
+        if(count==1)
+        {
+            connClose();//close the connection to the database
+            this->hide();
+            UserData mDialog(this, username);
+            mDialog.setModal(true);
+            mDialog.exec();
+        }
+        else if(count<1 || count>1)
+        {
+            QMessageBox::warning(this, "Woops!","The password or the username does not match!" );
+        }
     }
 }

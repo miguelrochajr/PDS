@@ -9,6 +9,7 @@
 #include <QString>
 #include <QDebug>
 #include <QTextStream>
+#include "mainwindow.h"
 
 namespace Ui {
 class SubsDialog;

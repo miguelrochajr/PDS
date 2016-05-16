@@ -23,6 +23,11 @@ SubsDialog::SubsDialog(QWidget *parent) :
     ui(new Ui::SubsDialog)
 {
     ui->setupUi(this);
+    MainWindow conn;
+    if(conn.connOpen())
+        ui->label_db_status->setText("Database is connected!");
+    else
+        ui->label_db_status->setText("Fail to open database!");
 }
 
 SubsDialog::~SubsDialog()
@@ -59,6 +64,7 @@ bool SubsDialog::AlreadyInserted(QString Filename, QString username){
 
 void SubsDialog::on_pushButton_Signup_clicked()
 {
+    MainWindow conn;
     QString username, password, name, address, zip, state, city, telephone, birthdate, email, photo;
 
     /*Assigning current entitites*/
@@ -74,14 +80,24 @@ void SubsDialog::on_pushButton_Signup_clicked()
     email  = ui->lineEdit_email->text();
     photo = ui->lineEdit_photo->text();
 
-    if(!AlreadyInserted(mFilename, username))
+    if(!conn.connOpen()){
+        qDebug() << "Fail to open database! \n";
+        return;
+    }
+
+    conn.connOpen(); //Opens the object
+    QSqlQuery qry;
+    qry.prepare("insert into Login (Name, Username, Password, Address, ZIP, City, State, BirthDay, Telephone, email, picture) values('"+name+"','"+username+"','"+password+"','"+address+"','"+zip+"','"+city+"','"+state+"','"+birthdate+"','"+telephone+"','"+email+"','"+photo+"')");
+    //qry.prepare("insert into Login (Name, username) values ('"+name++"','"+username+"')");
+    if(qry.exec())
     {
-        SubsDialog::Write(mFilename,username, password, name, address, zip, state, city, telephone, birthdate, email, photo);
+        QMessageBox::critical(this, "Congratulations!","The informations have been Saved!" );
+        conn.connClose();
+        this->close();
     }
     else{
-        QMessageBox::warning(this, "Woops!","Username already exists! Try another one." );
+        QMessageBox::warning(this, "Error", qry.lastError().text());
     }
-    SubsDialog::Read(mFilename);
 }
 
 void SubsDialog::Write(QString Filename,QString username,QString password,QString name,QString address,QString zip,QString state,QString city,QString telephone,QString birthdate,QString email, QString photo)

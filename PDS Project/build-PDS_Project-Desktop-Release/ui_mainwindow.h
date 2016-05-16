@@ -32,7 +32,7 @@ class Ui_MainWindow
 public:
     QWidget *centralWidget;
     QLabel *label;
-    QWidget *widget;
+    QWidget *layoutWidget;
     QVBoxLayout *verticalLayout_4;
     QVBoxLayout *verticalLayout_2;
     QLabel *label_2;
@@ -40,10 +40,11 @@ public:
     QVBoxLayout *verticalLayout_3;
     QLabel *label_3;
     QLineEdit *lineEdit_password;
-    QWidget *widget1;
+    QWidget *layoutWidget1;
     QVBoxLayout *verticalLayout;
     QPushButton *pushButton_signin;
     QPushButton *pushButton_signup;
+    QLabel *label_dbstatus;
     QStatusBar *statusBar;
     QMenuBar *menuBar;
     QMenu *menuFile;
@@ -64,10 +65,10 @@ public:
         QFont font;
         font.setPointSize(20);
         label->setFont(font);
-        widget = new QWidget(centralWidget);
-        widget->setObjectName(QStringLiteral("widget"));
-        widget->setGeometry(QRect(120, 140, 150, 112));
-        verticalLayout_4 = new QVBoxLayout(widget);
+        layoutWidget = new QWidget(centralWidget);
+        layoutWidget->setObjectName(QStringLiteral("layoutWidget"));
+        layoutWidget->setGeometry(QRect(120, 90, 150, 112));
+        verticalLayout_4 = new QVBoxLayout(layoutWidget);
         verticalLayout_4->setSpacing(6);
         verticalLayout_4->setContentsMargins(11, 11, 11, 11);
         verticalLayout_4->setObjectName(QStringLiteral("verticalLayout_4"));
@@ -75,12 +76,12 @@ public:
         verticalLayout_2 = new QVBoxLayout();
         verticalLayout_2->setSpacing(6);
         verticalLayout_2->setObjectName(QStringLiteral("verticalLayout_2"));
-        label_2 = new QLabel(widget);
+        label_2 = new QLabel(layoutWidget);
         label_2->setObjectName(QStringLiteral("label_2"));
 
         verticalLayout_2->addWidget(label_2);
 
-        lineEdit_username = new QLineEdit(widget);
+        lineEdit_username = new QLineEdit(layoutWidget);
         lineEdit_username->setObjectName(QStringLiteral("lineEdit_username"));
         lineEdit_username->setMaxLength(30);
 
@@ -92,12 +93,12 @@ public:
         verticalLayout_3 = new QVBoxLayout();
         verticalLayout_3->setSpacing(6);
         verticalLayout_3->setObjectName(QStringLiteral("verticalLayout_3"));
-        label_3 = new QLabel(widget);
+        label_3 = new QLabel(layoutWidget);
         label_3->setObjectName(QStringLiteral("label_3"));
 
         verticalLayout_3->addWidget(label_3);
 
-        lineEdit_password = new QLineEdit(widget);
+        lineEdit_password = new QLineEdit(layoutWidget);
         lineEdit_password->setObjectName(QStringLiteral("lineEdit_password"));
         lineEdit_password->setMaxLength(10);
         lineEdit_password->setEchoMode(QLineEdit::Password);
@@ -107,33 +108,32 @@ public:
 
         verticalLayout_4->addLayout(verticalLayout_3);
 
-        widget1 = new QWidget(centralWidget);
-        widget1->setObjectName(QStringLiteral("widget1"));
-        widget1->setGeometry(QRect(140, 270, 111, 71));
-        verticalLayout = new QVBoxLayout(widget1);
+        layoutWidget1 = new QWidget(centralWidget);
+        layoutWidget1->setObjectName(QStringLiteral("layoutWidget1"));
+        layoutWidget1->setGeometry(QRect(140, 220, 111, 71));
+        verticalLayout = new QVBoxLayout(layoutWidget1);
         verticalLayout->setSpacing(6);
         verticalLayout->setContentsMargins(11, 11, 11, 11);
         verticalLayout->setObjectName(QStringLiteral("verticalLayout"));
         verticalLayout->setContentsMargins(0, 0, 0, 0);
-        pushButton_signin = new QPushButton(widget1);
+        pushButton_signin = new QPushButton(layoutWidget1);
         pushButton_signin->setObjectName(QStringLiteral("pushButton_signin"));
 
         verticalLayout->addWidget(pushButton_signin);
 
-        pushButton_signup = new QPushButton(widget1);
+        pushButton_signup = new QPushButton(layoutWidget1);
         pushButton_signup->setObjectName(QStringLiteral("pushButton_signup"));
 
         verticalLayout->addWidget(pushButton_signup);
 
+        label_dbstatus = new QLabel(centralWidget);
+        label_dbstatus->setObjectName(QStringLiteral("label_dbstatus"));
+        label_dbstatus->setGeometry(QRect(10, 370, 231, 17));
         MainWindow->setCentralWidget(centralWidget);
+        layoutWidget->raise();
+        layoutWidget->raise();
         label->raise();
-        pushButton_signin->raise();
-        pushButton_signup->raise();
-        lineEdit_username->raise();
-        lineEdit_password->raise();
-        label_2->raise();
-        lineEdit_username->raise();
-        label_3->raise();
+        label_dbstatus->raise();
         statusBar = new QStatusBar(MainWindow);
         statusBar->setObjectName(QStringLiteral("statusBar"));
         MainWindow->setStatusBar(statusBar);
@@ -169,6 +169,7 @@ public:
         lineEdit_password->setText(QString());
         pushButton_signin->setText(QApplication::translate("MainWindow", "Sign in", 0));
         pushButton_signup->setText(QApplication::translate("MainWindow", "Sign up!", 0));
+        label_dbstatus->setText(QApplication::translate("MainWindow", "[+]Status of Database connection", 0));
         menuFile->setTitle(QApplication::translate("MainWindow", "File", 0));
     } // retranslateUi
 

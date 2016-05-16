@@ -22,12 +22,14 @@ class UserData : public QDialog
     Q_OBJECT
 
 public:
-    explicit UserData(QWidget *parent = 0, QString usrname = "none");
+    explicit UserData(QWidget *parent = 0, QString username = NULL);
     ~UserData();
+private slots:
+    void on_pushButton_clicked();
+
 private:
     Ui::UserData *ui;
     QString username, password, name, address, zip, state, city, telephone, birthdate, email;
-    QString mFilename = "/home/msrj/Documents/PDS Project/PDS_Project/database.txt";
 };
 
 #endif // USERDATA_H

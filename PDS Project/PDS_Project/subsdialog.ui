@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>620</width>
-    <height>650</height>
+    <height>671</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -297,8 +297,11 @@
    <property name="text">
     <string>Sign me up!</string>
    </property>
+   <property name="default">
+    <bool>true</bool>
+   </property>
    <property name="flat">
-    <bool>false</bool>
+    <bool>true</bool>
    </property>
   </widget>
   <widget class="QWidget" name="layoutWidget">
@@ -356,10 +359,24 @@
     <string>Photo(Path to the file):</string>
    </property>
   </widget>
+  <widget class="QLabel" name="label_db_status">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>650</y>
+     <width>241</width>
+     <height>17</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>[+]DB Status</string>
+   </property>
+  </widget>
  </widget>
  <tabstops>
   <tabstop>lineEdit_username</tabstop>
   <tabstop>lineEdit_password</tabstop>
+  <tabstop>lineEdit_photo</tabstop>
   <tabstop>lineEdit_name</tabstop>
   <tabstop>lineEdit_address</tabstop>
   <tabstop>lineEdit_zip</tabstop>

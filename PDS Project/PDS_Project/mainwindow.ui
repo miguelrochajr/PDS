@@ -44,11 +44,11 @@
      <string>Sign in</string>
     </property>
    </widget>
-   <widget class="QWidget" name="">
+   <widget class="QWidget" name="layoutWidget">
     <property name="geometry">
      <rect>
       <x>120</x>
-      <y>140</y>
+      <y>90</y>
       <width>150</width>
       <height>112</height>
      </rect>
@@ -107,11 +107,11 @@
      </item>
     </layout>
    </widget>
-   <widget class="QWidget" name="">
+   <widget class="QWidget" name="layoutWidget">
     <property name="geometry">
      <rect>
       <x>140</x>
-      <y>270</y>
+      <y>220</y>
       <width>111</width>
       <height>71</height>
      </rect>
@@ -133,16 +133,23 @@
      </item>
     </layout>
    </widget>
+   <widget class="QLabel" name="label_dbstatus">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>370</y>
+      <width>231</width>
+      <height>17</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>[+]Status of Database connection</string>
+    </property>
+   </widget>
+   <zorder>layoutWidget</zorder>
+   <zorder>layoutWidget</zorder>
    <zorder>label</zorder>
-   <zorder>pushButton_signin</zorder>
-   <zorder>pushButton_signup</zorder>
-   <zorder>lineEdit_username</zorder>
-   <zorder>lineEdit_password</zorder>
-   <zorder>horizontalSlider</zorder>
-   <zorder>progressBar</zorder>
-   <zorder>label_2</zorder>
-   <zorder>lineEdit_username</zorder>
-   <zorder>label_3</zorder>
+   <zorder>label_dbstatus</zorder>
   </widget>
   <widget class="QStatusBar" name="statusBar"/>
   <widget class="QMenuBar" name="menuBar">
