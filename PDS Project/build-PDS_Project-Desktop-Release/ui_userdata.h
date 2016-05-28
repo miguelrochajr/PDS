@@ -26,7 +26,6 @@ class Ui_UserData
 public:
     QLabel *label;
     QPushButton *pushButton;
-    QLabel *label_picture;
     QTableView *tableView;
 
     void setupUi(QDialog *UserData)
@@ -36,19 +35,16 @@ public:
         UserData->resize(593, 389);
         label = new QLabel(UserData);
         label->setObjectName(QStringLiteral("label"));
-        label->setGeometry(QRect(210, 10, 221, 51));
+        label->setGeometry(QRect(170, 20, 261, 51));
         QFont font;
         font.setPointSize(20);
         label->setFont(font);
         pushButton = new QPushButton(UserData);
         pushButton->setObjectName(QStringLiteral("pushButton"));
         pushButton->setGeometry(QRect(240, 340, 99, 27));
-        label_picture = new QLabel(UserData);
-        label_picture->setObjectName(QStringLiteral("label_picture"));
-        label_picture->setGeometry(QRect(230, 90, 120, 120));
         tableView = new QTableView(UserData);
         tableView->setObjectName(QStringLiteral("tableView"));
-        tableView->setGeometry(QRect(20, 240, 551, 71));
+        tableView->setGeometry(QRect(20, 90, 551, 221));
 
         retranslateUi(UserData);
         QObject::connect(pushButton, SIGNAL(clicked()), UserData, SLOT(close()));
@@ -59,9 +55,8 @@ public:
     void retranslateUi(QDialog *UserData)
     {
         UserData->setWindowTitle(QApplication::translate("UserData", "Dialog", 0));
-        label->setText(QApplication::translate("UserData", "Informations", 0));
+        label->setText(QApplication::translate("UserData", "Sensor Informations", 0));
         pushButton->setText(QApplication::translate("UserData", "Close", 0));
-        label_picture->setText(QString());
     } // retranslateUi
 
 };

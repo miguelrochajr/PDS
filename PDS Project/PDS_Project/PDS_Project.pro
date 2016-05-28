@@ -18,15 +18,18 @@ SOURCES += main.cpp\
     databasae.cpp \
     subsdialog.cpp \
     userdata.cpp \
-    admin.cpp
+    admin.cpp \
+    newsensor.cpp
 
 HEADERS  += mainwindow.h \
     databasae.h \
     subsdialog.h \
     userdata.h \
-    admin.h
+    admin.h \
+    newsensor.h
 
 FORMS    += mainwindow.ui \
     subsdialog.ui \
     userdata.ui \
-    admin.ui
+    admin.ui \
+    newsensor.ui

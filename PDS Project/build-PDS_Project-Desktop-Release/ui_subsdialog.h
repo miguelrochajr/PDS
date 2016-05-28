@@ -14,6 +14,7 @@
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QButtonGroup>
 #include <QtWidgets/QDialog>
+#include <QtWidgets/QGridLayout>
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QLineEdit>
@@ -27,53 +28,76 @@ class Ui_SubsDialog
 {
 public:
     QLabel *label_header;
+    QLabel *label_db_status;
+    QWidget *widget;
+    QVBoxLayout *verticalLayout;
+    QGridLayout *gridLayout;
+    QLabel *label_9;
+    QLabel *label_11;
+    QLineEdit *lineEdit_username;
+    QLineEdit *lineEdit_password;
     QLabel *label_5;
     QLineEdit *lineEdit_level;
-    QLabel *label_9;
-    QLineEdit *lineEdit_username;
-    QLabel *label_11;
-    QLineEdit *lineEdit_password;
     QPushButton *pushButton_Signup;
-    QWidget *layoutWidget;
-    QVBoxLayout *verticalLayout;
-    QLabel *label_2;
-    QLabel *label_3;
-    QLabel *label_10;
-    QLabel *label_db_status;
 
     void setupUi(QDialog *SubsDialog)
     {
         if (SubsDialog->objectName().isEmpty())
             SubsDialog->setObjectName(QStringLiteral("SubsDialog"));
-        SubsDialog->resize(620, 671);
+        SubsDialog->resize(585, 403);
         label_header = new QLabel(SubsDialog);
         label_header->setObjectName(QStringLiteral("label_header"));
-        label_header->setGeometry(QRect(260, 20, 101, 51));
+        label_header->setGeometry(QRect(180, 50, 231, 51));
         QFont font;
         font.setPointSize(20);
         label_header->setFont(font);
-        label_5 = new QLabel(SubsDialog);
-        label_5->setObjectName(QStringLiteral("label_5"));
-        label_5->setGeometry(QRect(110, 280, 67, 17));
-        lineEdit_level = new QLineEdit(SubsDialog);
-        lineEdit_level->setObjectName(QStringLiteral("lineEdit_level"));
-        lineEdit_level->setGeometry(QRect(110, 310, 401, 27));
-        label_9 = new QLabel(SubsDialog);
+        label_db_status = new QLabel(SubsDialog);
+        label_db_status->setObjectName(QStringLiteral("label_db_status"));
+        label_db_status->setGeometry(QRect(30, 360, 241, 17));
+        widget = new QWidget(SubsDialog);
+        widget->setObjectName(QStringLiteral("widget"));
+        widget->setGeometry(QRect(140, 160, 302, 154));
+        verticalLayout = new QVBoxLayout(widget);
+        verticalLayout->setObjectName(QStringLiteral("verticalLayout"));
+        verticalLayout->setContentsMargins(0, 0, 0, 0);
+        gridLayout = new QGridLayout();
+        gridLayout->setObjectName(QStringLiteral("gridLayout"));
+        label_9 = new QLabel(widget);
         label_9->setObjectName(QStringLiteral("label_9"));
-        label_9->setGeometry(QRect(100, 160, 81, 17));
-        lineEdit_username = new QLineEdit(SubsDialog);
-        lineEdit_username->setObjectName(QStringLiteral("lineEdit_username"));
-        lineEdit_username->setGeometry(QRect(100, 180, 141, 27));
-        label_11 = new QLabel(SubsDialog);
+
+        gridLayout->addWidget(label_9, 0, 0, 1, 1);
+
+        label_11 = new QLabel(widget);
         label_11->setObjectName(QStringLiteral("label_11"));
-        label_11->setGeometry(QRect(340, 160, 81, 17));
-        lineEdit_password = new QLineEdit(SubsDialog);
+
+        gridLayout->addWidget(label_11, 0, 1, 1, 1);
+
+        lineEdit_username = new QLineEdit(widget);
+        lineEdit_username->setObjectName(QStringLiteral("lineEdit_username"));
+
+        gridLayout->addWidget(lineEdit_username, 1, 0, 1, 1);
+
+        lineEdit_password = new QLineEdit(widget);
         lineEdit_password->setObjectName(QStringLiteral("lineEdit_password"));
-        lineEdit_password->setGeometry(QRect(340, 180, 161, 27));
         lineEdit_password->setEchoMode(QLineEdit::PasswordEchoOnEdit);
-        pushButton_Signup = new QPushButton(SubsDialog);
+
+        gridLayout->addWidget(lineEdit_password, 1, 1, 1, 1);
+
+        label_5 = new QLabel(widget);
+        label_5->setObjectName(QStringLiteral("label_5"));
+
+        gridLayout->addWidget(label_5, 2, 0, 1, 1);
+
+        lineEdit_level = new QLineEdit(widget);
+        lineEdit_level->setObjectName(QStringLiteral("lineEdit_level"));
+
+        gridLayout->addWidget(lineEdit_level, 3, 0, 1, 2);
+
+
+        verticalLayout->addLayout(gridLayout);
+
+        pushButton_Signup = new QPushButton(widget);
         pushButton_Signup->setObjectName(QStringLiteral("pushButton_Signup"));
-        pushButton_Signup->setGeometry(QRect(220, 590, 161, 41));
         QFont font1;
         font1.setPointSize(18);
         font1.setBold(true);
@@ -83,29 +107,9 @@ public:
         pushButton_Signup->setFont(font1);
         pushButton_Signup->setDefault(true);
         pushButton_Signup->setFlat(true);
-        layoutWidget = new QWidget(SubsDialog);
-        layoutWidget->setObjectName(QStringLiteral("layoutWidget"));
-        layoutWidget->setGeometry(QRect(170, 70, 289, 42));
-        verticalLayout = new QVBoxLayout(layoutWidget);
-        verticalLayout->setObjectName(QStringLiteral("verticalLayout"));
-        verticalLayout->setContentsMargins(0, 0, 0, 0);
-        label_2 = new QLabel(layoutWidget);
-        label_2->setObjectName(QStringLiteral("label_2"));
-        label_2->setAcceptDrops(false);
 
-        verticalLayout->addWidget(label_2);
+        verticalLayout->addWidget(pushButton_Signup);
 
-        label_3 = new QLabel(layoutWidget);
-        label_3->setObjectName(QStringLiteral("label_3"));
-
-        verticalLayout->addWidget(label_3);
-
-        label_10 = new QLabel(SubsDialog);
-        label_10->setObjectName(QStringLiteral("label_10"));
-        label_10->setGeometry(QRect(100, 210, 161, 17));
-        label_db_status = new QLabel(SubsDialog);
-        label_db_status->setObjectName(QStringLiteral("label_db_status"));
-        label_db_status->setGeometry(QRect(10, 650, 241, 17));
         QWidget::setTabOrder(lineEdit_username, lineEdit_password);
         QWidget::setTabOrder(lineEdit_password, lineEdit_level);
         QWidget::setTabOrder(lineEdit_level, pushButton_Signup);
@@ -118,21 +122,18 @@ public:
     void retranslateUi(QDialog *SubsDialog)
     {
         SubsDialog->setWindowTitle(QApplication::translate("SubsDialog", "Dialog", 0));
-        label_header->setText(QApplication::translate("SubsDialog", "Sign up!", 0));
-        label_5->setText(QApplication::translate("SubsDialog", "Nivel", 0));
+        label_header->setText(QApplication::translate("SubsDialog", "Add a new Person", 0));
+        label_db_status->setText(QApplication::translate("SubsDialog", "[+]DB Status", 0));
         label_9->setText(QApplication::translate("SubsDialog", "Username:", 0));
+        label_11->setText(QApplication::translate("SubsDialog", "Password:", 0));
 #ifndef QT_NO_STATUSTIP
         lineEdit_username->setStatusTip(QString());
 #endif // QT_NO_STATUSTIP
-        label_11->setText(QApplication::translate("SubsDialog", "Password:", 0));
 #ifndef QT_NO_STATUSTIP
         lineEdit_password->setStatusTip(QString());
 #endif // QT_NO_STATUSTIP
-        pushButton_Signup->setText(QApplication::translate("SubsDialog", "Sign me up!", 0));
-        label_2->setText(QApplication::translate("SubsDialog", "And get access to your home informations", 0));
-        label_3->setText(QApplication::translate("SubsDialog", "               from wherever you are!", 0));
-        label_10->setText(QApplication::translate("SubsDialog", "Photo(Path to the file):", 0));
-        label_db_status->setText(QApplication::translate("SubsDialog", "[+]DB Status", 0));
+        label_5->setText(QApplication::translate("SubsDialog", "Nivel", 0));
+        pushButton_Signup->setText(QApplication::translate("SubsDialog", "Save it!", 0));
     } // retranslateUi
 
 };

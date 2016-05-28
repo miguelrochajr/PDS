@@ -16,9 +16,9 @@
   <widget class="QLabel" name="label">
    <property name="geometry">
     <rect>
-     <x>210</x>
-     <y>10</y>
-     <width>221</width>
+     <x>170</x>
+     <y>20</y>
+     <width>261</width>
      <height>51</height>
     </rect>
    </property>
@@ -28,7 +28,7 @@
     </font>
    </property>
    <property name="text">
-    <string>Informations</string>
+    <string>Sensor Informations</string>
    </property>
   </widget>
   <widget class="QPushButton" name="pushButton">
@@ -44,26 +44,13 @@
     <string>Close</string>
    </property>
   </widget>
-  <widget class="QLabel" name="label_picture">
-   <property name="geometry">
-    <rect>
-     <x>230</x>
-     <y>90</y>
-     <width>120</width>
-     <height>120</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string/>
-   </property>
-  </widget>
   <widget class="QTableView" name="tableView">
    <property name="geometry">
     <rect>
      <x>20</x>
-     <y>240</y>
+     <y>90</y>
      <width>551</width>
-     <height>71</height>
+     <height>221</height>
     </rect>
    </property>
   </widget>

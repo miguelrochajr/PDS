@@ -15,7 +15,7 @@ UserData::UserData(QWidget *parent) :
     conn.connOpen();
     QSqlQuery* qry = new QSqlQuery(conn.mydb);
     QSqlQuery* qry2 = new QSqlQuery(conn.mydb);
-    qry->prepare("select * from Login where Username='"+username+"'");
+    qry->prepare("select * from Sensor");
     qry->exec();
     modal->setQuery(*qry);
     ui->tableView->setModel(modal);

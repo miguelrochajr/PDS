@@ -15,6 +15,9 @@
 #include <QIODevice>
 #include <QtWidgets>
 
+#include <QStyle>
+#include <QDesktopWidget>
+
 
 bool MainWindow::AlreadyInserted(QString Filename, QString username){
 
@@ -84,6 +87,14 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+    QWidget:setGeometry(
+        QStyle::alignedRect(
+            Qt::LeftToRight,
+            Qt::AlignCenter,
+            QWidget::size(),
+            qApp->desktop()->availableGeometry())
+                );
+    QWidget::setWindowTitle("ProtoLAB");
     if(connOpen())
         ui->label_dbstatus->setText("Database is connected!");
     else
@@ -99,6 +110,7 @@ MainWindow::~MainWindow()
 void MainWindow::on_pushButton_signin_clicked()
 {
     QString username, password;
+    QString admin = "admin";
     username = ui->lineEdit_username->text();
     password = ui->lineEdit_password->text();
 
@@ -109,7 +121,7 @@ void MainWindow::on_pushButton_signin_clicked()
 
     connOpen(); //Opens the object
     QSqlQuery qry;
-    qry.prepare("select * from Login where username='" + username +"' and password='"+password+"'");
+    qry.prepare("select * from Person where name='" + username +"' and password='"+password+"'");
 
     if(qry.exec())
     {
@@ -120,16 +132,21 @@ void MainWindow::on_pushButton_signin_clicked()
         }
         if(count==1)
         {
-            connClose();//close the connection to the database
-//            this->hide();
-//            UserData mDialog(this, username);
-//            mDialog.setModal(true);
-//            mDialog.exec();
-            this->hide();
-            Admin mDialog(this);
-            mDialog.setModal(true);
-            mDialog.exec();
-            this->show();
+            connClose();
+            if(username==admin){
+                this->hide();
+                Admin mDialog(this);
+                mDialog.setModal(true);
+                mDialog.exec();
+                this->show();
+            }
+            else{
+                this->hide();
+                UserData mDialog(this);
+                mDialog.setModal(true);
+                mDialog.exec();
+                this->show();
+            }
         }
         else if(count<1 || count>1)
         {

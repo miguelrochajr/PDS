@@ -12,9 +12,7 @@
 #include <QtWidgets>
 #include <iostream>
 #include <stdlib.h>
-#include <opencv2/opencv.hpp>
-#include <opencv/cv.h>
-#include <highgui.h>
+
 
 
 
@@ -23,6 +21,7 @@ SubsDialog::SubsDialog(QWidget *parent) :
     ui(new Ui::SubsDialog)
 {
     ui->setupUi(this);
+    QWidget::setWindowTitle("Cadastro de nova pessoa");
     MainWindow conn;
     if(conn.connOpen())
         ui->label_db_status->setText("Database is connected!");
@@ -79,11 +78,10 @@ void SubsDialog::on_pushButton_Signup_clicked()
 
     conn.connOpen(); //Opens the object
     QSqlQuery qry;
-    //qry.prepare("insert into Login (Name, Username, Password, Address, ZIP, City, State, BirthDay, Telephone, email, picture) values('"+name+"','"+username+"','"+password+"','"+address+"','"+zip+"','"+city+"','"+state+"','"+birthdate+"','"+telephone+"','"+email+"','"+photo+"')");
-    qry.prepare("insert into Login (Name, username) values ('"+level+"','"+username+"')");
+    qry.prepare("insert into Person (name, level, password) values ('"+username+"', '"+level+"', '"+password+"')");
     if(qry.exec())
     {
-        QMessageBox::critical(this, "Congratulations!","The informations have been Saved!" );
+        QMessageBox::information(this, "Congratulations!","The informations have been Saved!" );
         conn.connClose();
         this->close();
     }
